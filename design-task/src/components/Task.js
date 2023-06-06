@@ -9,8 +9,9 @@ const Task = ({ tasks, completeTask, removeTask, updateTask }) => {
     value: ''
   });
 
-  const submitUpdate = value => {
-    updateTask(edit.id, value);
+  const updateTaskItem = (id, value) => {
+    updateTask(id, value);
+
     setEdit({
       id: null,
       value: ''
@@ -18,26 +19,15 @@ const Task = ({ tasks, completeTask, removeTask, updateTask }) => {
   };
 
   if (edit.id) {
-    return <TaskForm edit={edit} onSubmit={submitUpdate} />;
+    return <TaskForm edit={edit} onSubmit={updateTaskItem} />;
   }
 
   return tasks.map((task, index) => (
-    <div
-      className={task.isComplete ? 'task-row complete' : 'task-row'}
-      key={index}
-    >
-      <div key={task.id} onClick={() => completeTask(task.id)}>
-        {task.text}
-      </div>
+    <div className={task.isComplete ? 'task-row complete' : 'task-row'} key={index}>
+      <div onClick={() => completeTask(task.id)}>{task.text}</div>
       <div className='icons'>
-        <RiCloseCircleLine
-          onClick={() => removeTask(task.id)}
-          className='delete-icon'
-        />
-        <TiEdit
-          onClick={() => setEdit({ id: task.id, value: task.text })}
-          className='edit-icon'
-        />
+        <RiCloseCircleLine onClick={() => removeTask(task.id)} className='delete-icon' />
+        <TiEdit onClick={() => setEdit({ id: task.id, value: task.text })} className='edit-icon' />
       </div>
     </div>
   ));

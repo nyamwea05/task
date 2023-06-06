@@ -40,7 +40,7 @@ function TaskList() {
   };
 
   return (
-    <div>
+    <div className="task-list-container">
       <h1>What's The Game Plan Currently?</h1>
       <TaskForm onSubmit={addTask} />
       <Task
