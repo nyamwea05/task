@@ -116,3 +116,15 @@ h1 {
 .edit-icon {
   color: #fff;
 }
+
+.emoji-decoration {
+  position: fixed;
+  left: 5cm;
+  top: 40%;
+  transform: translateY(-50%);
+  font-size: 1.5cm;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  /* Add any additional styling as needed */
+}

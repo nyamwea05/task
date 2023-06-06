@@ -7,6 +7,7 @@ import TaskList from './components/TaskList';
 function App() {
   return (
     <div className="Task Manager">
+        <div className="emoji-decoration">(　-_･) ︻デ═一 ▸</div>
       <TaskList />
     </div>
   );
