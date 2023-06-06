@@ -1,3 +1,15 @@
+@keyframes animatedBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,7 +18,10 @@
 }
 
 body {
-  background: linear-gradient(90deg, rgba(48, 16, 255, 1) 0%, rgba(100, 115, 255, 1) 100%);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background-repeat: repeat;
+  background-size: cover;
+  animation: animatedBackground 10s ease infinite;
 }
 
 .task-list-container {
@@ -20,6 +35,7 @@ h1 {
   margin: 32px 0;
   color: #fff;
   font-size: 24px;
+  font-family: cursive;
 }
 
 .task-form {
@@ -34,7 +50,7 @@ h1 {
   border-radius: 4px;
   border: 2px solid #5d0cff;
   outline: none;
-  width: 320px;
+  width: 478px; /* Adjust the width as needed */
   background: transparent;
   color: #fff;
   margin-bottom: 16px;
@@ -47,7 +63,7 @@ h1 {
 .datetime-container {
   display: flex;
   justify-content: space-between;
-  width: 320px;
+  width: 480px; /* Adjust the width as needed */
   margin-bottom: 16px;
 }
 
@@ -60,7 +76,7 @@ h1 {
   background: linear-gradient(90deg, rgba(93, 12, 255, 1) 0%, rgba(155, 0, 250, 1) 100%);
   color: #fff;
   text-transform: capitalize;
-  width: 320px;
+  width: 400px; /* Adjust the width as needed */
 }
 
 .task-button.edit {
