@@ -139,3 +139,113 @@ function TaskForm(props) {
 }
 
 export default TaskForm;
+
+
+
+
+
+
+
+import React, { useState } from 'react';
+import TaskForm from './TaskForm';
+import Task from './Task';
+
+function TaskList() {
+  const [tasks, setTasks] = useState([]);
+
+  const addTask = task => {
+    if (!task.text || /^\s*$/.test(task.text)) {
+      return;
+    }
+    
+const newTasks = [task,...tasks]
+
+setTasks(newTasks)
+
+
+  };
+
+  const completeTask = id => {
+    let updatedTasks = tasks.map(task => {
+       if (task.id === id) {
+        task.isComplete = !task.isComplete
+       }
+       return task
+    })
+    setTasks{updatedTasks};
+  }
+
+  return (
+    <div>
+      <h1>What's The Game Plan Currently?</h1>
+      <TaskForm onSubmit={addTask} />
+      <Task
+      tasks={tasks}
+      completeTask={completeTask}
+      />
+    </div>
+  );
+}
+
+export default TaskList;
+
+
+
+
+
+
+
+import React , {useState} from 'react'
+import TaskForm from './TaskForm';
+import { RiCloseCircleLine } from 'react-icons/ri';
+import { TiEdit } from 'react-icons/ti';
+
+
+function Task({tasks, completeTask}) {
+const[edit, setEdit] =useState({
+    id:null,
+    value:''
+})
+
+  return tasks.map((task,index) =>(
+    <div className={task.isComplete? 'task-row complete':
+'task-row'}key={index}
+>
+    <div key={task.id} onClick={() => completeTask(task.id)}>
+{task.text}
+
+    </div>
+<div className='icons'>
+<RiCloseCircleLine
+/>
+<TiEdit/>
+</div>
+    </div>
+  ))
+}
+
+export default Task;
+
+
+
+
+
+import React from 'react';
+import { RiCloseCircleLine } from 'react-icons/ri';
+import { TiEdit } from 'react-icons/ti';
+
+function Task({ tasks, completeTask }) {
+  return tasks.map((task, index) => (
+    <div className={task.isComplete ? 'task-row complete' : 'task-row'} key={index}>
+      <div onClick={() => completeTask(task.id)}>{task.text}</div>
+      <div className='icons'>
+        <RiCloseCircleLine onClick={() => completeTask(task.id)} 
+        className='delete-icon'
+        />
+        <TiEdit />
+      </div>
+    </div>
+  ));
+}
+
+export default Task;

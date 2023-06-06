@@ -1,7 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 function TaskForm(props) {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState(props.edit ? props.edit.value : '');
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  });
+
+  const handleChange = e => {
+    setInput(e.target.value);
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -10,21 +20,40 @@ function TaskForm(props) {
       id: Math.floor(Math.random() * 10000),
       text: input
     });
-
     setInput('');
   };
 
   return (
-    <form className='task-form' onSubmit={handleSubmit}>
-      <input
-        type='text'
-        placeholder='craft task'
-        value={input}
-        name='text'
-        className='task-input'
-        onChange={e => setInput(e.target.value)}
-      />
-      <button className='task-button'>Add task</button>
+    <form onSubmit={handleSubmit} className='task-form'>
+      {props.edit ? (
+        <>
+          <input
+            placeholder='Update your item'
+            value={input}
+            onChange={handleChange}
+            name='text'
+            ref={inputRef}
+            className='task-input edit'
+          />
+          <button onClick={handleSubmit} className='task-button edit'>
+            Update
+          </button>
+        </>
+      ) : (
+        <>
+          <input
+            placeholder='Add a task'
+            value={input}
+            onChange={handleChange}
+            name='text'
+            className='task-input'
+            ref={inputRef}
+          />
+          <button onClick={handleSubmit} className='task-button'>
+            Add task
+          </button>
+        </>
+      )}
     </form>
   );
 }

@@ -1,16 +1,13 @@
-
 import React from 'react';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css'
-import TaskForm from './components/TaskForm';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-
+import TaskList from './components/TaskList';
 
 function App() {
   return (
     <div className="Task Manager">
-    <TaskForm/>
-    
+      <TaskList />
     </div>
   );
 }
