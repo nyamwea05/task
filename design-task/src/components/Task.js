@@ -22,9 +22,18 @@ const Task = ({ tasks, completeTask, removeTask, updateTask }) => {
     return <TaskForm edit={edit} onSubmit={updateTaskItem} />;
   }
 
-  return tasks.map((task, index) => (
-    <div className={task.isComplete ? 'task-row complete' : 'task-row'} key={index}>
-      <div onClick={() => completeTask(task.id)}>{task.text}</div>
+  return tasks.map((task) => (
+    <div className={task.isComplete ? 'task-row complete' : 'task-row'} key={task.id}>
+      <div onClick={() => completeTask(task.id)}>
+        <h3>{task.text}</h3>
+        <p>Title: {task.title}</p>
+        <p>Category: {task.category}</p>
+        <p>Due Date: {task.dueDate}</p>
+        <p>Start Time: {task.startTime}</p>
+        <p>End Time: {task.endTime}</p>
+        <p>Priority: {task.priority}</p>
+        <p>Description: {task.description}</p>
+      </div>
       <div className='icons'>
         <RiCloseCircleLine onClick={() => removeTask(task.id)} className='delete-icon' />
         <TiEdit onClick={() => setEdit({ id: task.id, value: task.text })} className='edit-icon' />
