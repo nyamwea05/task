@@ -249,3 +249,76 @@ function Task({ tasks, completeTask }) {
 }
 
 export default Task;
+
+
+
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  try {
+    // Make an API call to add the new task to the database
+    const response = await fetch('http://localhost:9292/task', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        text: input,
+        title,
+        category,
+        dueDate,
+        startTime,
+        endTime,
+        priority,
+        description
+      }),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      // Call the onSubmit function and pass the response data
+      props.onSubmit(data);
+      // Reset the form fields
+      setInput('');
+      setTitle('');
+      setCategory('');
+      setDueDate('');
+      setStartTime('');
+      setEndTime('');
+      setPriority('');
+      setDescription('');
+    } else {
+      throw new Error('Error adding task');
+    }
+  } catch (error) {
+    console.error('Error adding task:', error);
+  }
+};
+
+
+
+ const handleSubmit = e => {
+    e.preventDefault();
+
+
+    
+
+    props.onSubmit({
+      id: Math.floor(Math.random() * 10000),
+      text: input,
+      title: title,
+      category: category,
+      dueDate: dueDate,
+      startTime: startTime,
+      endTime: endTime,
+      priority: priority,
+      description: description
+    });
+
+    setInput('');
+    setTitle('');
+    setCategory('');
+    setDueDate('');
+    setStartTime('');
+    setEndTime('');
+    setPriority('');
+    setDescription('');
+  };

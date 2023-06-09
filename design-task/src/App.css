@@ -88,11 +88,11 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 4px auto;
+  margin: 2px auto;
   color: #fff;
   background: linear-gradient(90deg, rgba(255, 118, 20, 1) 0%, rgba(255, 84, 17, 1) 100%);
-  padding: 16px;
-  border-radius: 5px;
+  padding: 6px 14px; /* Adjust the padding values as needed */
+  border-radius: 2px;
   width: 90%;
 }
 
@@ -127,4 +127,29 @@ h1 {
   color: white;
   text-align: center;
   /* Add any additional styling as needed */
+  animation: changeColor 5s infinite;
 }
+
+@keyframes changeColor {
+  0% {
+    --task-row-color-1: rgba(255, 118, 20, 1);
+    --task-row-color-2: rgba(255, 84, 17, 1);
+  }
+  25% {
+    --task-row-color-1: rgba(255, 20, 20, 1);
+    --task-row-color-2: rgba(255, 17, 17, 1);
+  }
+  50% {
+    --task-row-color-1: rgba(20, 255, 20, 1);
+    --task-row-color-2: rgba(17, 255, 17, 1);
+  }
+  75% {
+    --task-row-color-1: rgba(20, 20, 255, 1);
+    --task-row-color-2: rgba(17, 17, 255, 1);
+  }
+  100% {
+    --task-row-color-1: rgba(255, 118, 20, 1);
+    --task-row-color-2: rgba(255, 84, 17, 1);
+  }
+}
+
